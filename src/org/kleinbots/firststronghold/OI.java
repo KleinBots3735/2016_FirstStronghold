@@ -44,7 +44,7 @@ public class OI {
 	public OI(Joystick j) {
 		joy = j; //sets joystick from Hardware adapter
 		
-		//Buttons
+		//Button Mapping for joystick
 		Button x = new JoystickButton(joy,1);
 		Button a = new JoystickButton(joy,2);
 		Button b = new JoystickButton(joy,3);
@@ -58,19 +58,19 @@ public class OI {
 		
 			//Move intake arm up
 		l1.whileHeld(new setIntakePivot(0.3));
-		l1.whenReleased(new setIntakePivot(0));
+		l1.whenReleased(new setIntakePivot(0)); //stops pivot
 		
 			//Move intake arm down
 		l1.whileHeld(new setIntakePivot(-0.3));
-		l1.whenReleased(new setIntakePivot(0));
+		l1.whenReleased(new setIntakePivot(0)); //stops pivot
 		
 			//Intake normal direction
-		r1.whileHeld(new setIntakeRoller(1));
-		r1.whenReleased(new setIntakeRoller(0));
+		r1.whileHeld(new setIntakeRoller(1));    
+		r1.whenReleased(new setIntakeRoller(0)); //stops roller
 		
 			//Reverses intake roller
 		r2.whileHeld(new setIntakeRoller(-1));
-		r2.whenReleased(new setIntakeRoller(0));
+		r2.whenReleased(new setIntakeRoller(0)); //stop roller
 	}
 	
 	
