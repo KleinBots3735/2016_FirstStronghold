@@ -1,5 +1,12 @@
 package org.kleinbots.firststronghold;
 
+import org.kleinbots.firststronghold.commands.setIntakePivot;
+import org.kleinbots.firststronghold.commands.setIntakeRoller;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -32,5 +39,40 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+	private Joystick joy;
+	
+	public OI(Joystick j) {
+		joy = j; //sets joystick from Hardware adapter
+		
+		//Buttons
+		Button x = new JoystickButton(joy,1);
+		Button a = new JoystickButton(joy,2);
+		Button b = new JoystickButton(joy,3);
+		Button y = new JoystickButton(joy,4);
+		Button l1 = new JoystickButton(joy,5);
+		Button r1 = new JoystickButton(joy,6);
+		Button l2 = new JoystickButton(joy,7);
+		Button r2 = new JoystickButton(joy,8);
+		
+		//Command Mapping
+		
+			//Move intake arm up
+		l1.whileHeld(new setIntakePivot(0.3));
+		l1.whenReleased(new setIntakePivot(0));
+		
+			//Move intake arm down
+		l1.whileHeld(new setIntakePivot(-0.3));
+		l1.whenReleased(new setIntakePivot(0));
+		
+			//Intake normal direction
+		r1.whileHeld(new setIntakeRoller(1));
+		r1.whenReleased(new setIntakeRoller(0));
+		
+			//Reverses intake roller
+		r2.whileHeld(new setIntakeRoller(-1));
+		r2.whenReleased(new setIntakeRoller(0));
+	}
+	
+	
 }
 

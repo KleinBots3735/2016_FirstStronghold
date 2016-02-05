@@ -1,6 +1,9 @@
 
 package org.kleinbots.firststronghold;
 
+import org.kleinbots.firststronghold.subsystems.Drive;
+import org.kleinbots.firststronghold.subsystems.Intake;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -18,6 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
+	public static Drive drive;
+	public static Intake intake;
 	
     Command autonomousCommand;
     SendableChooser chooser;
@@ -27,7 +32,11 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
+		oi = new OI(HA.mainJoy);
+		drive = new Drive(HA.talon_1, HA.talon_2, 
+				HA.talon_3, HA.talon_4);
+		intake = new Intake(HA.talon_5, HA.talon_6);
+		
         chooser = new SendableChooser();
         //chooser.addDefault("Default Auto", new ExampleCommand());
 //        chooser.addObject("My Auto", new MyAutoCommand());
