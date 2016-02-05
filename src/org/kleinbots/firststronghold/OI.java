@@ -1,7 +1,5 @@
 package org.kleinbots.firststronghold;
 
-import edu.wpi.first.wpilibj.buttons.Button;
-import org.kleinbots.firststronghold.commands.ExampleCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
