@@ -1,7 +1,6 @@
 package org.kleinbots.firststronghold;
 
-import org.kleinbots.firststronghold.commands.setIntakePivot;
-import org.kleinbots.firststronghold.commands.setIntakeRoller;
+import org.kleinbots.firststronghold.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -40,9 +39,12 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	private Joystick joy;
+	private boolean isShooterOn,isRollerOn;
 	
 	public OI(Joystick j) {
 		joy = j; //sets joystick from Hardware adapter
+		isShooterOn = false;
+		isRollerOn = false;
 		
 		//Button Mapping for joystick
 		Button x = new JoystickButton(joy,1);
@@ -54,23 +56,59 @@ public class OI {
 		Button l2 = new JoystickButton(joy,7);
 		Button r2 = new JoystickButton(joy,8);
 		
-		//Command Mapping
+//Command Mapping
 		
+	//INTAKE COMMANDS		
 			//Move intake arm up
 		l1.whileHeld(new setIntakePivot(0.3));
 		l1.whenReleased(new setIntakePivot(0)); //stops pivot
 		
 			//Move intake arm down
-		l1.whileHeld(new setIntakePivot(-0.3));
-		l1.whenReleased(new setIntakePivot(0)); //stops pivot
+		l2.whileHeld(new setIntakePivot(-0.3));
+		l2.whenReleased(new setIntakePivot(0)); //stops pivot
 		
-			//Intake normal direction
-		r1.whileHeld(new setIntakeRoller(1));    
-		r1.whenReleased(new setIntakeRoller(0)); //stops roller
+			//Toggle Roller On/Off
+		if(!isRollerOn) {
+			x.whenPressed(new setIntakeRoller(1));
+			//Roller is now ON
+			isRollerOn = true;
+		}
+		else if(isRollerOn){
+			x.whenPressed(new setIntakeRoller(0));
+			//Roller is now OFF
+			isRollerOn = false;
+		}
+//			//Intake normal direction
+//		x.whileHeld(new setIntakeRoller(1));    
+//		x.whenReleased(new setIntakeRoller(0)); //stops roller
+//		
+//			//Reverses intake roller
+//		x.whileHeld(new setIntakeRoller(-1));
+//		x.whenReleased(new setIntakeRoller(0)); //stop roller
 		
-			//Reverses intake roller
-		r2.whileHeld(new setIntakeRoller(-1));
-		r2.whenReleased(new setIntakeRoller(0)); //stop roller
+	//SHOOTER COMMANDS		
+		
+			//Pivot shooter up
+		r1.whileHeld(new setShooterPivot(0.3));
+		r1.whenReleased(new setShooterPivot(0));
+		
+			//Pivot shooter down
+		r2.whileHeld(new setShooterPivot(-0.3));
+		r2.whenReleased(new setShooterPivot(0));
+		
+		/*
+		 * toggles the shooter on/off
+		 * sets the boolean value isShooterOn true/false appropriately to match 
+		 * shooter state
+		 */
+		if(isShooterOn) {
+			a.whenPressed(new setShooter(12));
+			isShooterOn = true;
+		}	
+		else if(!isShooterOn){
+			a.whenPressed(new setShooter(0));
+			isShooterOn = false;
+		}
 	}
 	
 	

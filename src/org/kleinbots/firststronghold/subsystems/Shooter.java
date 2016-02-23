@@ -1,12 +1,13 @@
 package org.kleinbots.firststronghold.subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class Shooter extends Subsystem {
+public class Shooter extends PIDSubsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -14,6 +15,7 @@ public class Shooter extends Subsystem {
 	private CANTalon pivot, left_wheel, right_wheel;
 	
 	public Shooter(CANTalon pivot, CANTalon left_shooter, CANTalon right_shooter){
+		super(1, 1, 1);
 		this.pivot = pivot;
 		this.left_wheel = left_shooter;
 		this.right_wheel = right_shooter;
@@ -21,18 +23,35 @@ public class Shooter extends Subsystem {
 		right_wheel.setControlMode(4);	//set to voltage mode
 	}
 	
+	//sends any important information to smartdashboard. Called in Robot.java
+	public void log(){
+		
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
     
-    public void setShooter(double leftSPD, double rightSPD){
-    	left_wheel.set(leftSPD);
-    	right_wheel.set(rightSPD);
+    public void setShooter(double left_voltage, double right_voltage){
+    	left_wheel.set(left_voltage);
+    	right_wheel.set(right_voltage);
     }
     
-    public void setShooterPivot(double voltage){
-    	pivot.set(voltage);
+    public void setShooterPivot(double speed){
+    	pivot.set(speed);
     }
+
+	@Override
+	protected double returnPIDInput() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		// TODO Auto-generated method stub
+		
+	}
 }
 

@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class setShooter extends Command {
 	
-	double speed;
+	double voltage;
 	
-    public setShooter(double s) {
+    public setShooter(double v) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooter);
-    	speed = s;
+    	voltage = v;
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +24,7 @@ public class setShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.setShooter(speed, -speed);
+    	Robot.shooter.setShooter(voltage, -voltage);
     }
 
     // Make this return true when this Command no longer needs to run execute()
