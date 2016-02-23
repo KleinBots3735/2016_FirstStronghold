@@ -39,7 +39,6 @@ public class OI {
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
 	private Joystick joy;
-	private boolean isShooterOn,isRollerOn;
 	
 	public OI(Joystick j) {
 		joy = j; //sets joystick from Hardware adapter
@@ -49,21 +48,25 @@ public class OI {
 		Button a = new JoystickButton(joy,2);
 		Button b = new JoystickButton(joy,3);
 		Button y = new JoystickButton(joy,4);
-		Button l1 = new JoystickButton(joy,5);
-		Button r1 = new JoystickButton(joy,6);
-		Button l2 = new JoystickButton(joy,7);
-		Button r2 = new JoystickButton(joy,8);
+		Button lb = new JoystickButton(joy,5);
+		Button rb = new JoystickButton(joy,6);
+		Button lt = new JoystickButton(joy,7);
+		Button rt = new JoystickButton(joy,8);
+		Button back = new JoystickButton(joy,9);
+		Button start = new JoystickButton(joy,10);
+		Button ls = new JoystickButton(joy,11);
+		Button rs = new JoystickButton(joy,12);
 		
 //Command Mapping
 		
 	//INTAKE COMMANDS		
 			//Move intake arm up
-		l1.whileHeld(new setIntakePivot(0.3));
-		l1.whenReleased(new setIntakePivot(0)); //stops pivot
+		lb.whileHeld(new setIntakePivot(0.3));
+		lb.whenReleased(new setIntakePivot(0)); //stops pivot
 		
 			//Move intake arm down
-		l2.whileHeld(new setIntakePivot(-0.3));
-		l2.whenReleased(new setIntakePivot(0)); //stops pivot
+		lt.whileHeld(new setIntakePivot(-0.3));
+		lt.whenReleased(new setIntakePivot(0)); //stops pivot
 		
 		
 			//Toggle Roller On/Off
@@ -72,12 +75,12 @@ public class OI {
 	//SHOOTER COMMANDS		
 		
 			//Pivot shooter up
-		r1.whileHeld(new setShooterPivot(0.3));
-		r1.whenReleased(new setShooterPivot(0));
+		rb.whileHeld(new setShooterPivot(0.3));
+		rb.whenReleased(new setShooterPivot(0));
 		
 			//Pivot shooter down
-		r2.whileHeld(new setShooterPivot(-0.3));
-		r2.whenReleased(new setShooterPivot(0));
+		rt.whileHeld(new setShooterPivot(-0.3));
+		rt.whenReleased(new setShooterPivot(0));
 		
 			//Toggle Shooter On/Off
 		a.whenPressed(new toggleShooter(1.00));
