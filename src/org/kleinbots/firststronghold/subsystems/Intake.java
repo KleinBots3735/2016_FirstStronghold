@@ -12,6 +12,9 @@ public class Intake extends Subsystem {
     // here. Call these from Commands.
 	private CANTalon pivot, roller;
 	
+	/*
+	 * @param (CANTalon Pivot, CANTalon roller)
+	 */
 	public Intake(CANTalon p, CANTalon r){
 		pivot = p;
 		roller = r;

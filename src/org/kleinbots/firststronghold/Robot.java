@@ -33,9 +33,9 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI(HA.mainJoy);
-		drive = new Drive(HA.talon_1, HA.talon_2, 
-				HA.talon_3, HA.talon_4);
-		intake = new Intake(HA.talon_5, HA.talon_6);
+		drive = new Drive(HA.front_left_drive, HA.front_right_drive, 
+				HA.rear_left_drive, HA.rear_right_drive);
+		intake = new Intake(HA.intake_pivot, HA.intake_roller);
 		
         chooser = new SendableChooser();
         //chooser.addDefault("Default Auto", new ExampleCommand());
