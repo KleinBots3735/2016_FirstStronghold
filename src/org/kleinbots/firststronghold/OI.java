@@ -43,8 +43,6 @@ public class OI {
 	
 	public OI(Joystick j) {
 		joy = j; //sets joystick from Hardware adapter
-		isShooterOn = false;
-		isRollerOn = false;
 		
 		//Button Mapping for joystick
 		Button x = new JoystickButton(joy,1);
@@ -67,24 +65,9 @@ public class OI {
 		l2.whileHeld(new setIntakePivot(-0.3));
 		l2.whenReleased(new setIntakePivot(0)); //stops pivot
 		
+		
 			//Toggle Roller On/Off
-		if(!isRollerOn) {
-			x.whenPressed(new setIntakeRoller(1));
-			//Roller is now ON
-			isRollerOn = true;
-		}
-		else if(isRollerOn){
-			x.whenPressed(new setIntakeRoller(0));
-			//Roller is now OFF
-			isRollerOn = false;
-		}
-//			//Intake normal direction
-//		x.whileHeld(new setIntakeRoller(1));    
-//		x.whenReleased(new setIntakeRoller(0)); //stops roller
-//		
-//			//Reverses intake roller
-//		x.whileHeld(new setIntakeRoller(-1));
-//		x.whenReleased(new setIntakeRoller(0)); //stop roller
+		x.whenPressed(new toggleIntakeRoller(0.5));
 		
 	//SHOOTER COMMANDS		
 		
@@ -96,19 +79,8 @@ public class OI {
 		r2.whileHeld(new setShooterPivot(-0.3));
 		r2.whenReleased(new setShooterPivot(0));
 		
-		/*
-		 * toggles the shooter on/off
-		 * sets the boolean value isShooterOn true/false appropriately to match 
-		 * shooter state
-		 */
-		if(isShooterOn) {
-			a.whenPressed(new setShooter(12));
-			isShooterOn = true;
-		}	
-		else if(!isShooterOn){
-			a.whenPressed(new setShooter(0));
-			isShooterOn = false;
-		}
+			//Toggle Shooter On/Off
+		a.whenPressed(new toggleShooter(1.00));
 	}
 	
 	

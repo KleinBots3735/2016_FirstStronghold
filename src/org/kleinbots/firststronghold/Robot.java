@@ -34,12 +34,11 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI(HA.mainJoy);
-		drive = new Drive(HA.front_left_drive, HA.front_right_drive, 
-				HA.rear_left_drive, HA.rear_right_drive);
+		drive = new Drive(HA.front_left_drive, HA.rear_left_drive, 
+				HA.front_right_drive, HA.rear_right_drive);
 		intake = new Intake(HA.intake_pivot, HA.intake_roller);
-		shooter = new Shooter(HA.shooter_pivot, HA.left_shooter_wheel,HA.right_shooter_wheel);
-	
+		shooter = new Shooter(HA.shooter_pivot, HA.left_shooter_wheel,HA.right_shooter_wheel, HA.pot);
+		oi = new OI(HA.mainJoy);	
 		
         chooser = new SendableChooser();
         //chooser.addDefault("Default Auto", new ExampleCommand());

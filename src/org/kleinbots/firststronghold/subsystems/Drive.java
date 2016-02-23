@@ -17,12 +17,15 @@ public class Drive extends Subsystem {
 	private CANTalon frontLeft, rearLeft, frontRight, rearRight;
 	private RobotDrive drivetrain;
 	
-	public Drive(CANTalon fl, CANTalon fr, CANTalon rl, CANTalon rr){
+	private int direction;
+	
+	public Drive(CANTalon fl, CANTalon rl, CANTalon fr, CANTalon rr){
 		frontLeft = fl;
 		frontRight = fr;
 		rearLeft = rl;
 		rearRight = rr;
 		drivetrain = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
+		direction = 1;
 	}
 	
     public void initDefaultCommand() {
@@ -32,7 +35,15 @@ public class Drive extends Subsystem {
     }
     
     public void move(){
-    	drivetrain.arcadeDrive(HA.mainJoy.getY(), HA.mainJoy.getThrottle());
+    	drivetrain.arcadeDrive(HA.mainJoy.getY()*direction, HA.mainJoy.getTwist()*direction);
+    }
+    
+    public void changeDirection(int i){
+    	direction = i;
+    }
+    
+    public int getDirection(){
+    	return direction;
     }
 }
 

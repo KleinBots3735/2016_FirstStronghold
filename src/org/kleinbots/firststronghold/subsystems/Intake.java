@@ -11,6 +11,7 @@ public class Intake extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private CANTalon pivot, roller;
+	public static boolean isOn;
 	
 	/*
 	 * @param (CANTalon Pivot, CANTalon roller)
@@ -18,6 +19,7 @@ public class Intake extends Subsystem {
 	public Intake(CANTalon p, CANTalon r){
 		pivot = p;
 		roller = r;
+		isOn = false;
 	}
 	
     public void initDefaultCommand() {
@@ -32,6 +34,14 @@ public class Intake extends Subsystem {
     
     public void setRollerSPD(double SPD){
     	roller.set(SPD);
+    }
+    
+    public boolean getIntakeOn(){
+    	return isOn;
+    }
+    
+    public void setIntakeOn(boolean b){
+    	isOn = b;
     }
 }
 
