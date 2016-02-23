@@ -1,9 +1,7 @@
 
 package org.kleinbots.firststronghold;
 
-import org.kleinbots.firststronghold.subsystems.Drive;
-import org.kleinbots.firststronghold.subsystems.Intake;
-import org.kleinbots.firststronghold.subsystems.Shooter;
+import org.kleinbots.firststronghold.subsystems.*;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -25,6 +23,7 @@ public class Robot extends IterativeRobot {
 	public static Drive drive;
 	public static Intake intake;
 	public static Shooter shooter;
+	public static Scaler scaler;
 	
     Command autonomousCommand;
     SendableChooser chooser;
@@ -38,6 +37,7 @@ public class Robot extends IterativeRobot {
 				HA.front_right_drive, HA.rear_right_drive);
 		intake = new Intake(HA.intake_pivot, HA.intake_roller);
 		shooter = new Shooter(HA.shooter_pivot, HA.left_shooter_wheel,HA.right_shooter_wheel, HA.pot);
+		scaler = new Scaler();
 		oi = new OI(HA.mainJoy);	
 		
         chooser = new SendableChooser();
