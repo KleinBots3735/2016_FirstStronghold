@@ -1,8 +1,7 @@
 
-package org.kleinbots.firststronghold;
+package kb.stronghold;
 
-import org.kleinbots.firststronghold.subsystems.*;
-
+import kb.stronghold.subsystems.*;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;

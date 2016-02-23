@@ -1,8 +1,7 @@
-package org.kleinbots.firststronghold.subsystems;
+package kb.stronghold.subsystems;
 
-import org.kleinbots.firststronghold.HA;
-import org.kleinbots.firststronghold.commands.ArcadeDrive;
-
+import kb.stronghold.HA;
+import kb.stronghold.commands.ArcadeDrive;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;

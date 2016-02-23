@@ -1,20 +1,19 @@
-package org.kleinbots.firststronghold.commands;
+package kb.stronghold.commands;
 
-import org.kleinbots.firststronghold.Robot;
-
+import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class setScaler extends Command {
+public class setShooterPivot extends Command {
 	
 	double speed;
 	
-    public setScaler(double s) {
+    public setShooterPivot(double s) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.scaler);
+    	requires(Robot.shooter);
     	speed = s;
     }
 
@@ -24,12 +23,12 @@ public class setScaler extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.scaler.setSPD(speed);
+    	Robot.shooter.setShooterPivot(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.shooter.limit.get();
     }
 
     // Called once after isFinished returns true
@@ -39,5 +38,9 @@ public class setScaler extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    
+    protected void log(){
+
     }
 }

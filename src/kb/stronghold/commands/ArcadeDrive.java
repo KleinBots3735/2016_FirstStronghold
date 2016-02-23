@@ -1,37 +1,26 @@
-package org.kleinbots.firststronghold.commands;
+package kb.stronghold.commands;
 
-import org.kleinbots.firststronghold.Robot;
-
+import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class toggleShooter extends Command {
-	
-	double SPD;
-	
-    public toggleShooter(double s) {
+public class ArcadeDrive extends Command {
+
+    public ArcadeDrive() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
-    	SPD = s;
+    	requires(Robot.drive);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Robot.shooter.getIsOn()){
-    		Robot.shooter.setShooter(0, 0);
-    	}
-    	else if(!Robot.shooter.getIsOn()){
-    		Robot.shooter.setShooter(SPD, -SPD);
-    	}
-    	Robot.shooter.setIsOn(!Robot.shooter.getIsOn());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	Robot.drive.move();
     }
 
     // Make this return true when this Command no longer needs to run execute()

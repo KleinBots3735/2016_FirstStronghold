@@ -1,29 +1,36 @@
-package org.kleinbots.firststronghold.commands;
+package kb.stronghold.commands;
 
-import org.kleinbots.firststronghold.Robot;
-
+import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class setIntakePivot extends Command {
-	double speed;
+public class toggleShooter extends Command {
 	
-    public setIntakePivot(double s) {
+	double SPD;
+	
+    public toggleShooter(double s) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
-    	speed = s;
+    	requires(Robot.shooter);
+    	SPD = s;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(Robot.shooter.getIsOn()){
+    		Robot.shooter.setShooter(0, 0);
+    	}
+    	else if(!Robot.shooter.getIsOn()){
+    		Robot.shooter.setShooter(SPD, -SPD);
+    	}
+    	Robot.shooter.setIsOn(!Robot.shooter.getIsOn());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.setPivotSPD(speed);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()

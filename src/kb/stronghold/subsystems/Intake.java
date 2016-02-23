@@ -1,4 +1,4 @@
-package org.kleinbots.firststronghold.subsystems;
+package kb.stronghold.subsystems;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;

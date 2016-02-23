@@ -1,7 +1,6 @@
-package org.kleinbots.firststronghold;
+package kb.stronghold;
 
-import org.kleinbots.firststronghold.commands.*;
-
+import kb.stronghold.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

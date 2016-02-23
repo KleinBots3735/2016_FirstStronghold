@@ -1,4 +1,4 @@
-package org.kleinbots.firststronghold;
+package kb.stronghold;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;

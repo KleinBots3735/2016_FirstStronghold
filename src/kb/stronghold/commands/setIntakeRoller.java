@@ -1,20 +1,18 @@
-package org.kleinbots.firststronghold.commands;
+package kb.stronghold.commands;
 
-import org.kleinbots.firststronghold.Robot;
-
+import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class setShooterPivot extends Command {
-	
+public class setIntakeRoller extends Command {
 	double speed;
 	
-    public setShooterPivot(double s) {
+    public setIntakeRoller(double s) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.shooter);
+    	requires(Robot.intake);
     	speed = s;
     }
 
@@ -24,12 +22,12 @@ public class setShooterPivot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.setShooterPivot(speed);
+    	Robot.intake.setRollerSPD(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.shooter.limit.get();
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -39,9 +37,5 @@ public class setShooterPivot extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    }
-    
-    protected void log(){
-
     }
 }

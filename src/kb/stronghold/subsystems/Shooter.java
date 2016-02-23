@@ -1,7 +1,6 @@
-package org.kleinbots.firststronghold.subsystems;
+package kb.stronghold.subsystems;
 
-import org.kleinbots.firststronghold.HA;
-
+import kb.stronghold.HA;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
