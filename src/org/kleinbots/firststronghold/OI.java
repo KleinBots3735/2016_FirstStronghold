@@ -63,6 +63,9 @@ public class OI {
 		
 //Command Mapping
 		
+	//DRIVE COMMANDS
+		start.whenPressed(new changeDirection());
+		
 	//INTAKE COMMANDS		
 			//Move intake arm up
 		lb.whileHeld(new setIntakePivot(0.3));
@@ -88,6 +91,13 @@ public class OI {
 		
 			//Toggle Shooter On/Off
 		a.whenPressed(new toggleShooter(1.00));
+		
+			//Toggle Shooter Solenoid
+		b.whenPressed(new shootSolenoid());
+		
+	//SCALER COMMANDS
+		ls.whileHeld(new setScaler(1));
+		rs.whileHeld(new setScaler(-1));
 	}
 	
 	

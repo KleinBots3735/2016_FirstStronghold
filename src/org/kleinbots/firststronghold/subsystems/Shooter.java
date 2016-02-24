@@ -5,6 +5,7 @@ import org.kleinbots.firststronghold.HA;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,7 +21,9 @@ public class Shooter extends PIDSubsystem {
 	private CANTalon pivot, left_wheel, right_wheel;
 	public DigitalInput limit;
 	public static boolean isOn;
+	public Solenoid solenoid;
 	AnalogPotentiometer pot;
+	public static boolean sole_extend;
 	
 	public Shooter(CANTalon pivot, CANTalon left_shooter, CANTalon right_shooter, AnalogPotentiometer potentiometer){
 		super(1, 1, 1);
@@ -30,6 +33,7 @@ public class Shooter extends PIDSubsystem {
 		pot = potentiometer;
 		limit = HA.shooter_lim;
 		isOn = false;
+		solenoid = HA.shooter_sole;
 //		left_wheel.setControlMode(4);	//set to voltage mode
 //		right_wheel.setControlMode(4);	//set to voltage mode
 	}
@@ -73,6 +77,11 @@ public class Shooter extends PIDSubsystem {
 	protected void usePIDOutput(double output) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void shootSolenoid(){
+		solenoid.set(sole_extend);
+		sole_extend = !sole_extend;
 	}
 }
 
