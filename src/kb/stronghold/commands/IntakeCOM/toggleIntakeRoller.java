@@ -1,4 +1,4 @@
-package kb.stronghold.commands;
+package kb.stronghold.commands.IntakeCOM;
 
 import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -6,17 +6,28 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class changeDirection extends Command {
-
-    public changeDirection() {
+public class toggleIntakeRoller extends Command {
+	
+	double speed;
+	
+    public toggleIntakeRoller(double s) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.drive);
+    	requires(Robot.intake);
+    	speed = s;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.drive.changeDirection(Robot.drive.getDirection()*-1);
+    	double SPD = 0;
+    	if(Robot.intake.getIntakeOn())
+    		SPD = speed;
+    	else if(!Robot.intake.getIntakeOn())
+    		SPD = 0;
+    	
+    	Robot.intake.setRollerSPD(SPD);
+    	Robot.intake.setIntakeOn(!Robot.intake.getIntakeOn());
+    	log();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,5 +47,9 @@ public class changeDirection extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     	end();
+    }
+    
+    protected void log(){
+    	System.out.println("Toggle " + Robot.intake.getIntakeOn());
     }
 }

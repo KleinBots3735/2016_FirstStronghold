@@ -1,6 +1,10 @@
 package kb.stronghold;
 
 import kb.stronghold.commands.*;
+import kb.stronghold.commands.DriveCOM.*;
+import kb.stronghold.commands.IntakeCOM.*;
+import kb.stronghold.commands.ScalerCOM.*;
+import kb.stronghold.commands.ShooterCOM.*;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;

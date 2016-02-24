@@ -1,7 +1,7 @@
 package kb.stronghold.subsystems;
 
 import kb.stronghold.HA;
-import kb.stronghold.commands.ArcadeDrive;
+import kb.stronghold.commands.DriveCOM.ArcadeDrive;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;

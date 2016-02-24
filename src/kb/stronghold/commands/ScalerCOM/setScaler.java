@@ -1,4 +1,4 @@
-package kb.stronghold.commands;
+package kb.stronghold.commands.ScalerCOM;
 
 import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;

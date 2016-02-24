@@ -1,4 +1,4 @@
-package kb.stronghold.commands;
+package kb.stronghold.commands.ShooterCOM;
 
 import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -6,14 +6,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class setIntakePivot extends Command {
-	double speed;
+public class setShooter extends Command {
 	
-    public setIntakePivot(double s) {
+	double voltage;
+	
+    public setShooter(double v) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
-    	speed = s;
+    	requires(Robot.shooter);
+    	voltage = v;
     }
 
     // Called just before this Command runs the first time
@@ -22,7 +23,7 @@ public class setIntakePivot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.setPivotSPD(speed);
+    	Robot.shooter.setShooter(voltage, -voltage);
     }
 
     // Make this return true when this Command no longer needs to run execute()

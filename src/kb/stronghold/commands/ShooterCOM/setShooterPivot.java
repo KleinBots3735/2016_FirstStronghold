@@ -1,4 +1,4 @@
-package kb.stronghold.commands;
+package kb.stronghold.commands.ShooterCOM;
 
 import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -6,15 +6,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class setShooter extends Command {
+public class setShooterPivot extends Command {
 	
-	double voltage;
+	double speed;
 	
-    public setShooter(double v) {
+    public setShooterPivot(double s) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooter);
-    	voltage = v;
+    	speed = s;
     }
 
     // Called just before this Command runs the first time
@@ -23,12 +23,12 @@ public class setShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.setShooter(voltage, -voltage);
+    	Robot.shooter.setShooterPivot(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.shooter.limit.get();
     }
 
     // Called once after isFinished returns true
@@ -38,5 +38,9 @@ public class setShooter extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    }
+    
+    protected void log(){
+
     }
 }

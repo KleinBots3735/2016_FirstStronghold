@@ -1,4 +1,4 @@
-package kb.stronghold.commands;
+package kb.stronghold.commands.IntakeCOM;
 
 import kb.stronghold.Robot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -6,12 +6,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ArcadeDrive extends Command {
-
-    public ArcadeDrive() {
+public class setIntakePivot extends Command {
+	double speed;
+	
+    public setIntakePivot(double s) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.drive);
+    	requires(Robot.intake);
+    	speed = s;
     }
 
     // Called just before this Command runs the first time
@@ -20,7 +22,7 @@ public class ArcadeDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drive.move();
+    	Robot.intake.setPivotSPD(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
