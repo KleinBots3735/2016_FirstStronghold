@@ -9,27 +9,37 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class toggleShooter extends Command {
 	
-	double SPD;
+	double speed;
 	
     public toggleShooter(double s) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooter);
-    	SPD = s;
+    	speed = s;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Robot.shooter.getIsOn()){
-    		Robot.shooter.setShooter(0, 0);
-        	Robot.shooter.setIsOn(false);
-
-    	}
-    	else if(!Robot.shooter.getIsOn()){
-    		Robot.shooter.setShooter(SPD, -SPD);
-        	Robot.shooter.setIsOn(true);
-
-    	}
+//    	if(Robot.shooter.getIsOn()){
+//    		Robot.shooter.setShooter(0, 0);
+//        	Robot.shooter.setIsOn(false);
+//
+//    	}
+//    	else if(!Robot.shooter.getIsOn()){
+//    		Robot.shooter.setShooter(SPD, -SPD);
+//        	Robot.shooter.setIsOn(true);
+//
+//    	}
+    	
+    	double SPD = 0;
+    	if(Robot.shooter.getIsOn())
+    		SPD = speed;
+    	else if(!Robot.shooter.getIsOn())
+    		SPD = 0;
+    	
+    	Robot.shooter.setShooter(SPD, -SPD);
+    	Robot.shooter.setIsOn(!Robot.shooter.getIsOn());
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
