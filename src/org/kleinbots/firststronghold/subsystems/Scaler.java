@@ -13,11 +13,11 @@ public class Scaler extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	private static CANTalon topMotor, bottomMotor;
+	private static CANTalon top, bottom;
 	
-	public Scaler(){
-		topMotor = HA.winch_1;
-		bottomMotor = HA.winch_2;
+	public Scaler(CANTalon topMotor, CANTalon bottomMotor){
+		top = topMotor;
+		bottom = bottomMotor;
 	}
 	
     public void initDefaultCommand() {
@@ -26,8 +26,8 @@ public class Scaler extends Subsystem {
     }
     
     public void setSPD(double SPD){
-    	topMotor.set(SPD);
-    	bottomMotor.set(SPD);
+    	top.set(SPD);
+    	bottom.set(SPD);
     }
 }
 
