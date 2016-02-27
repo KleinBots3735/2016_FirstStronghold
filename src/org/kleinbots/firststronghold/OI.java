@@ -1,6 +1,5 @@
 package org.kleinbots.firststronghold;
 
-import org.kleinbots.firststronghold.commands.*;
 import org.kleinbots.firststronghold.commands.DriveCOM.*;
 import org.kleinbots.firststronghold.commands.IntakeCOM.*;
 import org.kleinbots.firststronghold.commands.ScalerCOM.*;
@@ -64,6 +63,7 @@ public class OI {
 //Command Mapping
 		
 	//DRIVE COMMANDS
+			//Reverse driving controls
 		start.whenPressed(new changeDirection());
 		
 	//INTAKE COMMANDS		
@@ -83,11 +83,11 @@ public class OI {
 		
 			//Pivot shooter up
 		rb.whileHeld(new setShooterPivot(0.3));
-		rb.whenReleased(new setShooterPivot(0));
+		rb.whenReleased(new setShooterPivot(0));	//stops pivot
 		
 			//Pivot shooter down
 		rt.whileHeld(new setShooterPivot(-0.3));
-		rt.whenReleased(new setShooterPivot(0));
+		rt.whenReleased(new setShooterPivot(0));	//stops pivot
 		
 			//Toggle Shooter On/Off
 		a.whenPressed(new toggleShooter(1.00));
@@ -96,8 +96,14 @@ public class OI {
 		b.whenPressed(new shootSolenoid());
 		
 	//SCALER COMMANDS
+			
+			//crank winch forward
 		ls.whileHeld(new setScaler(1));
+		ls.whenReleased(new setScaler(0));	//stop winch
+			
+			//crank winch forward
 		rs.whileHeld(new setScaler(-1));
+		rs.whenReleased(new setScaler(0)); //stop winch
 	}
 	
 	
