@@ -71,6 +71,10 @@ public class Shooter extends PIDSubsystem {
     	isOn = b;
     }
     
+    public boolean getLimit(){
+    	return limit.get();
+    }
+    
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub

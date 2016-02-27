@@ -29,7 +29,7 @@ public class setShooterPivot extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.shooter.limit.get();
+        return Robot.shooter.getLimit();
     }
 
     // Called once after isFinished returns true
