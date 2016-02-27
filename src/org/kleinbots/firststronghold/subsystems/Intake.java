@@ -11,15 +11,15 @@ public class Intake extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private CANTalon pivot, roller;
-	public static boolean isOn;
+	public static boolean isOn;		//is Roller On?
 	
 	/*
 	 * @param (CANTalon Pivot, CANTalon roller)
 	 */
-	public Intake(CANTalon p, CANTalon r){
-		pivot = p;
-		roller = r;
-		isOn = false;
+	public Intake(CANTalon pivotMotor, CANTalon rollerMotor){
+		pivot = pivotMotor;
+		roller = rollerMotor;
+		isOn = false;		//default is false when Robot is first turned on
 	}
 	
     public void initDefaultCommand() {

@@ -20,11 +20,11 @@ public class Drive extends Subsystem {
 	
 	private int direction;
 	
-	public Drive(CANTalon fl, CANTalon rl, CANTalon fr, CANTalon rr){
-		frontLeft = fl;
-		frontRight = fr;
-		rearLeft = rl;
-		rearRight = rr;
+	public Drive(CANTalon frontLeftMotor, CANTalon rearLeftMotor, CANTalon frontRightMotor, CANTalon rearRightMotor){
+		frontLeft = frontLeftMotor;
+		frontRight = frontRightMotor;
+		rearLeft = rearLeftMotor;
+		rearRight = rearRightMotor;
 		
 		//instantiate RobotDrive. NOTE: Correct order of motors is very critical
 		drivetrain = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
