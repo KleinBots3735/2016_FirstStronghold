@@ -18,7 +18,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	
+	//initialize all subsystems and OI
 	public static OI oi;
 	public static Drive drive;
 	public static Intake intake;
@@ -33,6 +34,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	//instantiate all subystems and OI passing necessary hardware from HA
 		drive = new Drive(HA.front_left_drive, HA.rear_left_drive, 
 				HA.front_right_drive, HA.rear_right_drive);
 		intake = new Intake(HA.intake_pivot, HA.intake_roller);
@@ -69,6 +71,7 @@ public class Robot extends IterativeRobot {
 	 * or additional comparisons to the switch structure below with additional strings & commands.
 	 */
     public void autonomousInit() {
+    	//Selects which auton to use
         autonomousCommand = (Command) chooser.getSelected();
         
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
@@ -106,6 +109,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        log();
     }
     
     /**
@@ -113,5 +117,10 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    //retrieves logs from subsystems and is called in autonomous and teleop periodic
+    protected void log(){
+    	
     }
 }
