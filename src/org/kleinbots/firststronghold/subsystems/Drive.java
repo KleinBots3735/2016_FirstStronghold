@@ -14,6 +14,7 @@ public class Drive extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+	
 	private CANTalon frontLeft, rearLeft, frontRight, rearRight;
 	private RobotDrive drivetrain;
 	
@@ -24,7 +25,11 @@ public class Drive extends Subsystem {
 		frontRight = fr;
 		rearLeft = rl;
 		rearRight = rr;
+		
+		//instantiate RobotDrive. NOTE: Correct order of motors is very critical
 		drivetrain = new RobotDrive(frontLeft, rearLeft, frontRight, rearRight);
+		
+		//Set default direction modifier to 1. This is changed with the changeDirection command
 		direction = 1;
 	}
 	
@@ -35,7 +40,8 @@ public class Drive extends Subsystem {
     }
     
     public void move(){
-    	drivetrain.arcadeDrive(HA.mainJoy.getY()*direction, HA.mainJoy.getTwist()*direction);
+    	drivetrain.arcadeDrive(HA.mainJoy.getY()*direction, 		//gets up and down of the left joystick
+    						   HA.mainJoy.getTwist()*direction);	//gets left and right of the right joystick
     }
     
     public void changeDirection(int i){
