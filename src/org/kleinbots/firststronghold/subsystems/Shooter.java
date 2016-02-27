@@ -19,21 +19,25 @@ public class Shooter extends PIDSubsystem {
     // here. Call these from Commands.
 	
 	private CANTalon pivot, left_wheel, right_wheel;
-	public DigitalInput limit;
-	public static boolean isOn;
-	public Solenoid solenoid;
-	AnalogPotentiometer pot;
-	public static boolean sole_extend;
+	private DigitalInput limit;
+	private static boolean isOn;	//is Shooter on?
+	private Solenoid solenoid;
+	private AnalogPotentiometer pot;
+	private static boolean sole_extend; //what you want the solenoid state to be
 	
-	public Shooter(CANTalon pivot, CANTalon left_shooter, CANTalon right_shooter, AnalogPotentiometer potentiometer){
+	public Shooter(CANTalon pivotMotor, CANTalon leftShooterMotor, CANTalon rightShooterMotor, AnalogPotentiometer potentiometer, 
+					Solenoid shooterSolenoid, DigitalInput pivotLimit){
+		//Passes P,I,D values to super
 		super(1, 1, 1);
-		this.pivot = pivot;
-		this.left_wheel = left_shooter;
-		this.right_wheel = right_shooter;
+		
+		pivot = pivotMotor;
+		left_wheel = leftShooterMotor;
+		right_wheel = rightShooterMotor;
 		pot = potentiometer;
-		limit = HA.shooter_lim;
-		isOn = false;
-		solenoid = HA.shooter_sole;
+		limit = pivotLimit;
+		isOn = false;		//default is OFF
+		solenoid = shooterSolenoid;
+		
 //		left_wheel.setControlMode(4);	//set to voltage mode
 //		right_wheel.setControlMode(4);	//set to voltage mode
 	}
@@ -80,8 +84,8 @@ public class Shooter extends PIDSubsystem {
 	}
 	
 	public void shootSolenoid(){
-		solenoid.set(sole_extend);
-		sole_extend = !sole_extend;
+		solenoid.set(sole_extend);	//sets to desired solenoid state
+		sole_extend = !sole_extend;	//flips solenoid state to all for toggling
 	}
 }
 

@@ -35,10 +35,12 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	//instantiate all subystems and OI passing necessary hardware from HA
-		drive = new Drive(HA.front_left_drive, HA.rear_left_drive, 
-				HA.front_right_drive, HA.rear_right_drive);
+		drive = new Drive(HA.front_left_drive, HA.rear_left_drive, HA.front_right_drive, HA.rear_right_drive);
 		intake = new Intake(HA.intake_pivot, HA.intake_roller);
-		shooter = new Shooter(HA.shooter_pivot, HA.left_shooter_wheel,HA.right_shooter_wheel, HA.pot);
+		shooter = new Shooter(HA.shooter_pivot, HA.left_shooter_wheel,HA.right_shooter_wheel, 
+							  HA.pot, 
+							  HA.shooter_sole, 
+							  HA.shooter_lim);
 		scaler = new Scaler(HA.winch_1, HA.winch_2);
 		oi = new OI(HA.mainJoy);	
 		
