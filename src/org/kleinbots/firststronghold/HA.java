@@ -15,7 +15,7 @@ public class HA {
 	//Joystick 
 	public static Joystick mainJoy = new Joystick(0);
 	
-	//Motor Controllers
+	//Motor Controllers using CAN IDs
 	public static CANTalon front_left_drive = new CANTalon(1);
 	public static CANTalon rear_left_drive = new CANTalon(2);
 	public static CANTalon front_right_drive = new CANTalon(3);
@@ -28,7 +28,7 @@ public class HA {
 	public static CANTalon winch_1 = new CANTalon(10);
 	public static CANTalon winch_2 = new CANTalon(11);
 		
-	//Solenoids
+	//Solenoids on the manifold
 	public static Solenoid shooter_sole = new Solenoid(0);
 	public static Solenoid latch_sole = new Solenoid(1);
 		
