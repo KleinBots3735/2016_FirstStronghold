@@ -22,6 +22,11 @@ public class Intake extends Subsystem {
 		isOn = false;		//default is false when Robot is first turned on
 	}
 	
+	//sends any important information to smartdashboard. Called in Robot.java
+	public void log(){
+			
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());

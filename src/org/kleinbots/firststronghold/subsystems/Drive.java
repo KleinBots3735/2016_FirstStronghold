@@ -33,6 +33,11 @@ public class Drive extends Subsystem {
 		direction = 1;
 	}
 	
+	//sends any important information to smartdashboard. Called in Robot.java
+	public void log(){
+		
+	}
+	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
