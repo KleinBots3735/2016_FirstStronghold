@@ -41,12 +41,13 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-	private Joystick joy;
+	private Joystick joy, coJoy;
 	
-	public OI(Joystick j) {
-		joy = j; //sets joystick from Hardware adapter
+	public OI(Joystick j1, Joystick j2) {
+		joy = j1; //sets joystick from Hardware adapter
+		coJoy = j2;
 		
-		//Button Mapping for joystick
+		//Button Mapping for driver joystick
 		Button x = new JoystickButton(joy,1);
 		Button a = new JoystickButton(joy,2);
 		Button b = new JoystickButton(joy,3);
@@ -60,6 +61,20 @@ public class OI {
 		Button ls = new JoystickButton(joy,11);
 		Button rs = new JoystickButton(joy,12);
 		
+		//Button Mapping for codriver joystick
+		Button cX = new JoystickButton(coJoy,1);
+		Button cA = new JoystickButton(coJoy,2);
+		Button cB = new JoystickButton(coJoy,3);
+		Button cY = new JoystickButton(coJoy,4);
+		Button cLB = new JoystickButton(coJoy,5);
+		Button cRB = new JoystickButton(coJoy,6);
+		Button cLT = new JoystickButton(coJoy,7);
+		Button cRT = new JoystickButton(coJoy,8);
+		Button cBack = new JoystickButton(coJoy,9);
+		Button cStart = new JoystickButton(coJoy,10);
+		Button cLS = new JoystickButton(coJoy,11);
+		Button cRS = new JoystickButton(coJoy,12);			
+		
 //Command Mapping
 		
 	//DRIVE COMMANDS
@@ -68,44 +83,66 @@ public class OI {
 		
 	//INTAKE COMMANDS		
 			//Move intake arm up
-		lb.whileHeld(new setIntakePivot(0.3));
+		lb.whileHeld(new setIntakePivot(-0.5));
 		lb.whenReleased(new setIntakePivot(0)); //stops pivot
+		cLB.whileHeld(new setIntakePivot(-0.5));
+		cLB.whenReleased(new setIntakePivot(0)); //stops pivot
 		
 			//Move intake arm down
-		lt.whileHeld(new setIntakePivot(-0.3));
+		lt.whileHeld(new setIntakePivot(0.3));
 		lt.whenReleased(new setIntakePivot(0)); //stops pivot
+		cLT.whileHeld(new setIntakePivot(0.3));
+		cLT.whenReleased(new setIntakePivot(0)); //stops pivot
 		
 		
 			//Toggle Roller On/Off
-		x.whenPressed(new toggleIntakeRoller(0.5));
+		x.whenPressed(new toggleIntakeRoller(1.0));
+		cX.whenPressed(new toggleIntakeRoller(1.0));
+
 		
 	//SHOOTER COMMANDS		
 		
 			//Pivot shooter up
-		rb.whileHeld(new setShooterPivot(0.3));
-		rb.whenReleased(new setShooterPivot(0));	//stops pivot
+		rb.whileHeld(new setShooterPivot(-0.3));
+		rb.whenReleased(new setShooterPivot(0.0));	//stops pivot
+		cRB.whileHeld(new setShooterPivot(-0.3));
+		cRB.whenReleased(new setShooterPivot(0.0));	//stops pivot
 		
 			//Pivot shooter down
-		rt.whileHeld(new setShooterPivot(-0.3));
-		rt.whenReleased(new setShooterPivot(0));	//stops pivot
+		rt.whileHeld(new setShooterPivot(0.2));
+		rt.whenReleased(new setShooterPivot(0.0));	//stops pivot
+		cRT.whileHeld(new setShooterPivot(0.2));
+		cRT.whenReleased(new setShooterPivot(0.0));	//stops pivot
 		
 			//Toggle Shooter On/Off
-		a.whenPressed(new toggleShooter(1.00));
+		a.whenPressed(new toggleShooter(-0.75));
+		cA.whenPressed(new toggleShooter(-0.75));
+		//a.whenPressed(new setShooter(-1));
+		
+		//back.whenPressed(new setShooter(0));
 		
 			//Toggle Shooter Solenoid
 		b.whenPressed(new shootSolenoid());
+		cB.whenPressed(new shootSolenoid());
 		
 	//SCALER COMMANDS
 			
 			//crank winch forward
 		ls.whileHeld(new setScaler(1));
 		ls.whenReleased(new setScaler(0));	//stop winch
+		cLS.whileHeld(new setScaler(1));
+		cLS.whenReleased(new setScaler(0));	//stop winch
 			
 			//crank winch forward
 		rs.whileHeld(new setScaler(-1));
+		cRS.whileHeld(new setScaler(-1));
 		rs.whenReleased(new setScaler(0)); //stop winch
+		cRS.whenReleased(new setScaler(0)); //stop winch
+		
+		y.whenPressed(new latchScaler());
+		cY.whenPressed(new latchScaler());
+		
 	}
-	
 	
 }
 

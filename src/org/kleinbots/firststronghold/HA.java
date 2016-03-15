@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class HA {	
 	//Joystick 
 	public static Joystick mainJoy = new Joystick(0);
+	public static Joystick coJoy = new Joystick(1);
 	
 	//Motor Controllers using CAN IDs
 	public static CANTalon front_left_drive = new CANTalon(1);

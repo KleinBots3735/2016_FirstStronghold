@@ -75,6 +75,10 @@ public class Shooter extends PIDSubsystem {
     	return limit.get();
     }
     
+    public double getPosition(){
+    	return pot.get();
+    }
+    
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub

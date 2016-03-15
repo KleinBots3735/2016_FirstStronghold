@@ -1,8 +1,10 @@
 
 package org.kleinbots.firststronghold;
 
+import org.kleinbots.firststronghold.commands.auto;
 import org.kleinbots.firststronghold.subsystems.*;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -28,7 +30,8 @@ public class Robot extends IterativeRobot {
 	
     Command autonomousCommand;
     SendableChooser chooser;
-
+    CameraServer camServer;
+    
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -41,13 +44,19 @@ public class Robot extends IterativeRobot {
 							  HA.pot, 
 							  HA.shooter_sole, 
 							  HA.shooter_lim);
-		scaler = new Scaler(HA.winch_1, HA.winch_2);
-		oi = new OI(HA.mainJoy);	
+		scaler = new Scaler(HA.winch_1, HA.winch_2, HA.latch_sole);
+		oi = new OI(HA.mainJoy,HA.coJoy);	
 		
-        chooser = new SendableChooser();
+        //chooser = new SendableChooser();
         //chooser.addDefault("Default Auto", new ExampleCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+        //chooser.addObject("My Auto", new auto());
+        //SmartDashboard.putData("Auto mode", chooser);
+        camServer = CameraServer.getInstance();
+        camServer.setQuality(50);
+        //the camera name (ex "camera") can be found through the roborio web interface
+        camServer.startAutomaticCapture("cam0");
+        SmartDashboard.putNumber("Encoder", HA.intake_roller.getEncPosition());
+        
     }
 	
 	/**
@@ -74,8 +83,8 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	//Selects which auton to use
-        autonomousCommand = (Command) chooser.getSelected();
-        
+        //autonomousCommand = (Command) chooser.getSelected();
+        autonomousCommand = new auto();
 		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
 		switch(autoSelected) {
 		case "My Auto":
@@ -123,6 +132,6 @@ public class Robot extends IterativeRobot {
     
     //retrieves logs from subsystems and is called in autonomous and teleop periodic
     protected void log(){
-    	
+    	System.out.println(HA.intake_roller.getEncPosition());
     }
 }

@@ -32,13 +32,19 @@ public class toggleShooter extends Command {
 //    	}
     	
     	double SPD = 0;
-    	if(Robot.shooter.getIsOn())
-    		SPD = speed;
-    	else if(!Robot.shooter.getIsOn())
+    	if(Robot.shooter.getIsOn()){
     		SPD = 0;
-    	
-    	Robot.shooter.setShooter(SPD, -SPD);
-    	Robot.shooter.setIsOn(!Robot.shooter.getIsOn());
+    		Robot.shooter.setShooter(0, 0);
+        	Robot.shooter.setIsOn(!Robot.shooter.getIsOn());
+
+    	}
+    	else if(!Robot.shooter.getIsOn()) {
+    		SPD = speed;
+        	Robot.shooter.setShooter(SPD, -SPD);
+        	Robot.shooter.setIsOn(!Robot.shooter.getIsOn());
+    	}
+    	System.out.println("Toggle Shooter");
+    	System.out.println(Robot.shooter.getIsOn());
     	
     }
 
@@ -49,7 +55,7 @@ public class toggleShooter extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

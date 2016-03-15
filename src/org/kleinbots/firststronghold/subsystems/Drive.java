@@ -2,6 +2,7 @@ package org.kleinbots.firststronghold.subsystems;
 
 import org.kleinbots.firststronghold.HA;
 import org.kleinbots.firststronghold.commands.DriveCOM.ArcadeDrive;
+import org.kleinbots.firststronghold.commands.DriveCOM.accDrive;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -41,12 +42,16 @@ public class Drive extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new ArcadeDrive());
+    	setDefaultCommand(new accDrive());
     }
     
     public void move(){
     	drivetrain.arcadeDrive(HA.mainJoy.getY()*direction, 		//gets up and down of the left joystick
     						   HA.mainJoy.getTwist()*direction);	//gets left and right of the right joystick
+    }
+    
+    public void move(double y, double z){
+    	drivetrain.arcadeDrive(y,z);
     }
     
     public void changeDirection(int i){

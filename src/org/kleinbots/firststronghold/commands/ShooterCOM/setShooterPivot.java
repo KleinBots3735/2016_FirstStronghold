@@ -9,13 +9,19 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class setShooterPivot extends Command {
 	
-	double speed;
+	Double speed;
+	Double position;
 	
-    public setShooterPivot(double s) {
+    public setShooterPivot(Double s) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooter);
     	speed = s;
+    }
+    
+    public setShooterPivot(Double s, Double p){
+    	this(s);
+    	position = p;
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +30,11 @@ public class setShooterPivot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.shooter.setShooterPivot(speed);
+    	if(position == null)
+    		Robot.shooter.setShooterPivot(speed);
+    	else {
+    		
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
