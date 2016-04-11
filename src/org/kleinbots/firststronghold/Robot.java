@@ -1,7 +1,11 @@
 
 package org.kleinbots.firststronghold;
 
-import org.kleinbots.firststronghold.commands.auto;
+import org.kleinbots.firststronghold.commands.AUTO_DelayedCross;
+import org.kleinbots.firststronghold.commands.AUTO_DoNothing;
+import org.kleinbots.firststronghold.commands.AUTO_Cross;
+import org.kleinbots.firststronghold.commands.AUTO_LowBar;
+import org.kleinbots.firststronghold.commands.AUTO_Reach;
 import org.kleinbots.firststronghold.subsystems.*;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -30,7 +34,7 @@ public class Robot extends IterativeRobot {
 	
     Command autonomousCommand;
     SendableChooser chooser;
-    CameraServer camServer;
+    public static CameraServer camServer;
     
     /**
      * This function is run when the robot is first started up and should be
@@ -39,23 +43,24 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	//instantiate all subystems and OI passing necessary hardware from HA
 		drive = new Drive(HA.front_left_drive, HA.rear_left_drive, HA.front_right_drive, HA.rear_right_drive);
-		intake = new Intake(HA.intake_pivot, HA.intake_roller);
+		intake = new Intake(HA.intake_pivot, HA.intake_roller, HA.intakePot);
 		shooter = new Shooter(HA.shooter_pivot, HA.left_shooter_wheel,HA.right_shooter_wheel, 
-							  HA.pot, 
+							  HA.shooterPot, 
 							  HA.shooter_sole, 
 							  HA.shooter_lim);
 		scaler = new Scaler(HA.winch_1, HA.winch_2, HA.latch_sole);
 		oi = new OI(HA.mainJoy,HA.coJoy);	
-		
-        //chooser = new SendableChooser();
-        //chooser.addDefault("Default Auto", new ExampleCommand());
-        //chooser.addObject("My Auto", new auto());
-        //SmartDashboard.putData("Auto mode", chooser);
+        chooser = new SendableChooser();
+        chooser.addDefault("AUTO_DoNothing", new AUTO_DoNothing());
+        chooser.addDefault("AUTO_Reach", new AUTO_Reach());
+        chooser.addObject("AUTO_Cross", new AUTO_Cross());
+        chooser.addObject("AUTO_LowBar", new AUTO_LowBar());    
+        chooser.addObject("AUTO_DelayedCross", new AUTO_DelayedCross());
+        SmartDashboard.putData("Auto mode", chooser);
         camServer = CameraServer.getInstance();
         camServer.setQuality(50);
         //the camera name (ex "camera") can be found through the roborio web interface
-        camServer.startAutomaticCapture("cam0");
-        SmartDashboard.putNumber("Encoder", HA.intake_roller.getEncPosition());
+        camServer.startAutomaticCapture("cam1");
         
     }
 	
@@ -83,18 +88,18 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	//Selects which auton to use
-        //autonomousCommand = (Command) chooser.getSelected();
-        autonomousCommand = new auto();
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
+    	//autonomousCommand = new AUTO_DoNothing();
+        autonomousCommand = (Command) chooser.getSelected();
+//		String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
+//		switch(autoSelected) {
+//		case "auto":
+//			autonomousCommand = new AUTO_DriveStraight();
+//			break;
+//		case "Default Auto":
+//		default:
+//			autonomousCommand = new AUTO_DriveStraight();
+//			break;
+//		}
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -132,6 +137,8 @@ public class Robot extends IterativeRobot {
     
     //retrieves logs from subsystems and is called in autonomous and teleop periodic
     protected void log(){
-    	System.out.println(HA.intake_roller.getEncPosition());
+    	SmartDashboard.putNumber("Shooter Potentiometer", HA.shooterPot.get());
+    	SmartDashboard.putNumber("Intake Potentiometer", HA.intakePot.get());
+//    	SmartDashboard.putNumber("Rangefinder", HA.sonar.getRangeInches());
     }
 }

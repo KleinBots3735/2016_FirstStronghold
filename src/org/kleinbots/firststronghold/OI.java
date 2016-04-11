@@ -83,21 +83,31 @@ public class OI {
 		
 	//INTAKE COMMANDS		
 			//Move intake arm up
-		lb.whileHeld(new setIntakePivot(-0.5));
+		lb.whileHeld(new setIntakePivot(-0.75));
 		lb.whenReleased(new setIntakePivot(0)); //stops pivot
-		cLB.whileHeld(new setIntakePivot(-0.5));
+		cLB.whileHeld(new setIntakePivot(-0.75));
 		cLB.whenReleased(new setIntakePivot(0)); //stops pivot
 		
 			//Move intake arm down
-		lt.whileHeld(new setIntakePivot(0.3));
+		lt.whileHeld(new setIntakePivot(0.75));
 		lt.whenReleased(new setIntakePivot(0)); //stops pivot
-		cLT.whileHeld(new setIntakePivot(0.3));
+		cLT.whileHeld(new setIntakePivot(0.75));
 		cLT.whenReleased(new setIntakePivot(0)); //stops pivot
 		
+		back.whileHeld(new setIntakeRoller(-1.0));
+		back.whenReleased(new setIntakeRoller(0.0));
+		cBack.whileHeld(new setIntakeRoller(-1.0));
+		cBack.whenReleased(new setIntakeRoller(0.0));
+		
+		cStart.whileHeld(new setIntakeRoller(1.0));
+		cStart.whenReleased(new setIntakeRoller(0.0));
 		
 			//Toggle Roller On/Off
 		x.whenPressed(new toggleIntakeRoller(1.0));
 		cX.whenPressed(new toggleIntakeRoller(1.0));
+		
+//		back.whileHeld(new setIntakePos(195.0));
+//		back.whenReleased(new setIntakePivot(0.0));
 
 		
 	//SHOOTER COMMANDS		

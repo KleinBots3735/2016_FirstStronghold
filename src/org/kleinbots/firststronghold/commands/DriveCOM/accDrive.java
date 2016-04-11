@@ -91,7 +91,7 @@ public class accDrive extends Command {
 			/**************************************/
 			/* Let Update the Drive Train Y and Z */
 			/**************************************/
-			Robot.drive.move(YDriveMotor * K_MAX_MTR_Y , ZDriveMotor * K_MAX_MTR_Z);	
+			Robot.drive.move(YDriveMotor * K_MAX_MTR_Y , -ZDriveMotor * K_MAX_MTR_Z);	
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -101,6 +101,7 @@ public class accDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	//Robot.drive.move(0,0);
     }
 
     // Called when another command which requires one or more of the same

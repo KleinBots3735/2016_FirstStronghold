@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class auto extends CommandGroup {
+public class AUTO_Cross extends CommandGroup {
     
-    public  auto() {
+    public  AUTO_Cross() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -29,6 +29,6 @@ public class auto extends CommandGroup {
         // arm.
     	requires(Robot.drive);
     	
-    	addSequential(new accDrive(1.0,0.0),7.0); //drive straight for 5 seconds
+    	addSequential(new accDrive(1.0,0.0), 2.60); //drive straight for 5 seconds
     }
 }

@@ -47,7 +47,7 @@ public class Drive extends Subsystem {
     
     public void move(){
     	drivetrain.arcadeDrive(HA.mainJoy.getY()*direction, 		//gets up and down of the left joystick
-    						   HA.mainJoy.getTwist()*direction);	//gets left and right of the right joystick
+    						   HA.mainJoy.getTwist());	//gets left and right of the right joystick
     }
     
     public void move(double y, double z){

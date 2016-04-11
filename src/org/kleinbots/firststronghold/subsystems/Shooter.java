@@ -5,6 +5,8 @@ import org.kleinbots.firststronghold.HA;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -24,6 +26,9 @@ public class Shooter extends PIDSubsystem {
 	private Solenoid solenoid;
 	private AnalogPotentiometer pot;
 	private static boolean sole_extend; //what you want the solenoid state to be
+//	PIDController pidController;
+//	final double setPoints[] = {120, 140};
+//	final double pGain = 8.0, iGain =0.5, dGain = 3.0;
 	
 	public Shooter(CANTalon pivotMotor, CANTalon leftShooterMotor, CANTalon rightShooterMotor, AnalogPotentiometer potentiometer, 
 					Solenoid shooterSolenoid, DigitalInput pivotLimit){
@@ -37,16 +42,34 @@ public class Shooter extends PIDSubsystem {
 		limit = pivotLimit;
 		isOn = false;		//default is OFF
 		solenoid = shooterSolenoid;
-		
-//		left_wheel.setControlMode(4);	//set to voltage mode
-//		right_wheel.setControlMode(4);	//set to voltage mode
+//		pidController = new PIDController(pGain, iGain, dGain, pot, pivot);
 	}
+	
+//	public void shooterPID() {
+//		pidController.setInputRange(0, 5); //0 to 5V 
+//		pidController.setSetpoint(setPoints[0]); //set to first setpoint
+//		
+//		int index = 0;
+//		boolean currentValue;
+//		boolean previousValue = false;
+//		
+//		pidController.enable(); //begin PID control
+//        
+//        //when the button is pressed once, the selected elevator setpoint is incremented 
+//        currentValue = HA.mainJoy.getRawButton(11);
+//        if(currentValue && !previousValue){
+//    	pidController.setSetpoint(setPoints[index]);
+//    	index = (index + 1) % setPoints.length; //index of elevator setpoint wraps around
+//        }   
+//        previousValue = currentValue;
+//	}        
 	
 	//sends any important information to smartdashboard. Called in Robot.java
 	public void log(){
 		LiveWindow.addActuator("Shooter", "Shooter Pivot Motor", pivot);
 		LiveWindow.addSensor("Shooter", "Potentiometer", pot);
-		SmartDashboard.putBoolean("Shooter Limit", limit.get());
+//		LiveWindow.addActuator("pidController", "Shooter PID", pidController);
+		
 	}
 	
     public void initDefaultCommand() {
